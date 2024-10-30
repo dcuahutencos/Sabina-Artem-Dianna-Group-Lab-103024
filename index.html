@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h1>Embedding Media Lab</h1>
+    <p>Dianna, Sabina, Artem</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video with Local Audio</title>
+    <style>
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        iframe, audio {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+   
+    <div class="container">
+        <!-- Embed YouTube Video -->
+        <h2>YouTube Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    
+        <!-- Local Audio Player -->
+        <h2>Play Local Audio</h2>
+        <audio id="audioPlayer" controls>
+            <source id="audioSource" src="assets/kanyead.mp3" type="audio/mp3">
+        </audio>
+    
+        <!-- File Input for selecting audio -->
+        <input type="file" id="audioFile" accept="audio/*">
+    </div>
+    
+    <script>
+        // JavaScript to handle local audio file selection
+        const audioFileInput = document.getElementById('audioFile');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource = document.getElementById('audioSource');
+    
+        audioFileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                audioSource.src = url;
+                audioPlayer.load();
+                audioPlayer.play();
+            }
+        });
+    </script>
+    
+    </body>
+    </html>
+    
